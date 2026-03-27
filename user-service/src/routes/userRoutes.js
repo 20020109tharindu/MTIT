@@ -16,6 +16,7 @@ const {
  *       type: object
  *       required:
  *         - name
+ *         - phone
  *         - email
  *         - password
  *       properties:
@@ -26,6 +27,9 @@ const {
  *         name:
  *           type: string
  *           example: John Doe
+ *         phone:
+ *           type: string
+ *           example: "1234567890"
  *         email:
  *           type: string
  *           example: john@example.com
@@ -112,12 +116,16 @@ router.get('/:id', getUserById);
  *             type: object
  *             required:
  *               - name
+ *               - phone
  *               - email
  *               - password
  *             properties:
  *               name:
  *                 type: string
  *                 example: Jane Doe
+ *               phone:
+ *                 type: string
+ *                 example: "0987654321"
  *               email:
  *                 type: string
  *                 example: jane@example.com
@@ -163,6 +171,9 @@ router.post('/', createUser);
  *               name:
  *                 type: string
  *                 example: John Updated
+ *               phone:
+ *                 type: string
+ *                 example: "1112223333"
  *               email:
  *                 type: string
  *                 example: john.updated@example.com
