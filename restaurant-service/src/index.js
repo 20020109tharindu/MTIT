@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const connectDB = require('../config/db');
 
 const restaurantRoutes = require('./routes/restaurantRoutes');
 
@@ -40,16 +41,9 @@ app.get('/', (req, res) => {
   });
 });
 
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log('Connected to MongoDB (restaurant-db)');
-    app.listen(PORT, () => {
-      console.log(`Restaurant Service running on http://localhost:${PORT}`);
-      console.log(`Swagger docs at http://localhost:${PORT}/api-docs`);
-    });
-  })
-  .catch((err) => {
-    console.error('MongoDB connection error:', err.message);
-    process.exit(1);
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Restaurant Service running on http://localhost:${PORT}`);
+    console.log(`Swagger docs at http://localhost:${PORT}/api-docs`);
   });
+});
