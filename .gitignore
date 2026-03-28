@@ -1,1 +1,5 @@
 node_modules/
+
+# Environment files — contain passwords, never commit these to git
+.env
+
