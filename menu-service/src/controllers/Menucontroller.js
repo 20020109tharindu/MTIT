@@ -2,7 +2,13 @@ const MenuItem = require('../models/MenuItem');
 
 const getAllMenuItems = async (req, res) => {
   try {
-    const filter = req.query.restaurantId ? { restaurantId: req.query.restaurantId } : {};
+    const filter = {};
+    if (req.query.restaurantId) {
+      filter.restaurantId = req.query.restaurantId;
+    }
+    if (req.query.category) {
+        filter.category = req.query.category;
+    }
     const items = await MenuItem.find(filter);
     res.json(items);
   } catch (err) {

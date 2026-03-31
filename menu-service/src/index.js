@@ -4,9 +4,9 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-const connectDB = require('../config/db');
+const connectDB = require('./config/db');
 
-const menuRoutes = require('./routes/menuRoutes');
+const menuRoutes = require('./routes/MenuRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3003;
