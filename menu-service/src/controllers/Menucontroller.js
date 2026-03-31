@@ -6,6 +6,9 @@ const getAllMenuItems = async (req, res) => {
     if (req.query.restaurantId) {
       filter.restaurantId = req.query.restaurantId;
     }
+    if (req.query.category) {
+        filter.category = req.query.category;
+    }
     const items = await MenuItem.find(filter);
     res.json(items);
   } catch (err) {
