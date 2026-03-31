@@ -2,7 +2,13 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    const mongoUri = (process.env.MONGO_URI || '').trim();
+
+    if (!mongoUri) {
+      throw new Error('MONGO_URI is missing in menu-service/.env');
+    }
+
+    await mongoose.connect(mongoUri);
     console.log('Connected to MongoDB (menu-db)');
   } catch (err) {
     console.error('MongoDB connection error:', err.message);

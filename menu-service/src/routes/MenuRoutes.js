@@ -15,31 +15,29 @@ const {
  *     MenuItem:
  *       type: object
  *       required:
- *         - restaurantId
  *         - name
  *         - price
  *         - category
+ *         - restaurantId
  *       properties:
  *         _id:
  *           type: string
  *           description: Auto-generated MongoDB ID
- *           example: 6630f1b2e4b0c12a3c4d5e6f
- *         restaurantId:
- *           type: string
- *           description: ID of the restaurant this item belongs to
- *           example: 6630f1b2e4b0c12a3c4d5e00
  *         name:
  *           type: string
- *           example: Butter Chicken
+ *           example: Margherita Pizza
  *         description:
  *           type: string
- *           example: Creamy tomato-based chicken curry
+ *           example: Classic tomato and mozzarella pizza
  *         price:
  *           type: number
- *           example: 850
+ *           example: 12.99
  *         category:
  *           type: string
- *           example: Main Course
+ *           example: Pizza
+ *         restaurantId:
+ *           type: string
+ *           example: 664f1b2c9a4e2d001f3c8a10
  *         isAvailable:
  *           type: boolean
  *           example: true
@@ -53,16 +51,9 @@ const {
 
 /**
  * @swagger
- * tags:
- *   name: Menu
- *   description: Menu item management endpoints
- */
-
-/**
- * @swagger
  * /api/menu:
  *   get:
- *     summary: Get all menu items
+ *     summary: Get all menu items (optionally filter by restaurantId)
  *     tags: [Menu]
  *     parameters:
  *       - in: query
@@ -96,7 +87,7 @@ router.get('/', getAllMenuItems);
  *         required: true
  *         schema:
  *           type: string
- *         description: MongoDB menu item ID
+ *         description: Menu item ID
  *     responses:
  *       200:
  *         description: Menu item found
@@ -124,32 +115,32 @@ router.get('/:id', getMenuItemById);
  *           schema:
  *             type: object
  *             required:
- *               - restaurantId
  *               - name
  *               - price
  *               - category
+ *               - restaurantId
  *             properties:
- *               restaurantId:
- *                 type: string
- *                 example: 6630f1b2e4b0c12a3c4d5e00
  *               name:
  *                 type: string
- *                 example: Butter Chicken
+ *                 example: Margherita Pizza
  *               description:
  *                 type: string
- *                 example: Creamy tomato-based chicken curry
+ *                 example: Classic tomato and mozzarella pizza
  *               price:
  *                 type: number
- *                 example: 850
+ *                 example: 12.99
  *               category:
  *                 type: string
- *                 example: Main Course
+ *                 example: Pizza
+ *               restaurantId:
+ *                 type: string
+ *                 example: 664f1b2c9a4e2d001f3c8a10
  *               isAvailable:
  *                 type: boolean
  *                 example: true
  *     responses:
  *       201:
- *         description: Menu item created successfully
+ *         description: Menu item created
  *         content:
  *           application/json:
  *             schema:
@@ -171,7 +162,7 @@ router.post('/', createMenuItem);
  *         required: true
  *         schema:
  *           type: string
- *         description: MongoDB menu item ID
+ *         description: Menu item ID
  *     requestBody:
  *       required: true
  *       content:
@@ -187,11 +178,13 @@ router.post('/', createMenuItem);
  *                 type: number
  *               category:
  *                 type: string
+ *               restaurantId:
+ *                 type: string
  *               isAvailable:
  *                 type: boolean
  *     responses:
  *       200:
- *         description: Menu item updated successfully
+ *         description: Menu item updated
  *         content:
  *           application/json:
  *             schema:
@@ -215,10 +208,18 @@ router.put('/:id', updateMenuItem);
  *         required: true
  *         schema:
  *           type: string
- *         description: MongoDB menu item ID
+ *         description: Menu item ID
  *     responses:
  *       200:
  *         description: Menu item deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Menu item deleted successfully
  *       404:
  *         description: Menu item not found
  *       500:
