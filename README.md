@@ -235,6 +235,7 @@ MTIT/
 │   ├── package.json
 │   └── .env
 ├── user-service/
+│   ├── config/db.js
 │   ├── src/
 │   │   ├── controllers/userController.js
 │   │   ├── models/User.js
@@ -243,6 +244,7 @@ MTIT/
 │   ├── package.json
 │   └── .env
 ├── restaurant-service/
+│   ├── config/db.js
 │   ├── src/
 │   │   ├── controllers/restaurantController.js
 │   │   ├── models/Restaurant.js
@@ -251,6 +253,7 @@ MTIT/
 │   ├── package.json
 │   └── .env
 ├── menu-service/
+│   ├── config/db.js
 │   ├── src/
 │   │   ├── controllers/menuController.js
 │   │   ├── models/MenuItem.js
@@ -259,6 +262,7 @@ MTIT/
 │   ├── package.json
 │   └── .env
 ├── order-service/
+│   ├── config/db.js
 │   ├── src/
 │   │   ├── controllers/orderController.js
 │   │   ├── models/Order.js
