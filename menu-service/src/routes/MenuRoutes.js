@@ -61,6 +61,11 @@ const {
  *         schema:
  *           type: string
  *         description: Filter items by restaurant ID
+ *       - in: query        
+ *         name: category
+ *         schema:
+ *           type: string
+ *         description: Filter items by category (e.g. Pizza, Burger)
  *     responses:
  *       200:
  *         description: List of menu items
